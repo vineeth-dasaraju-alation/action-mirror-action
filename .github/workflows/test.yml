@@ -13,6 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set Node.js 19.x
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 19.x
+          cache: yarn
+
       - run: |
           yarn ci
 

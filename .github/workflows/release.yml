@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set Node.js 19.x
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 19.x
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn ci
+
+      - name: Run all
+        run: yarn all
+
+      - name: Release
+        run: yarn release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
