@@ -3,6 +3,10 @@ description: |
   Easily mirror actions from GitHub.com or other Git repositories to your own
   GitHub enterprise instance.
 author: Alexej Disterhoft <github@disterhoft.de>
+branding:
+  icon: "download-cloud"
+  color: "blue"
+
 inputs:
   token:
     description: |
