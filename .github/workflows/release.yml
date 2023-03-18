@@ -2,6 +2,12 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Dry run?"
+        required: true
+        default: true
+        type: boolean
 
 jobs:
   release:
@@ -25,8 +31,16 @@ jobs:
       - name: Run all
         run: yarn all
 
+      - name: Check Dry Run setting
+        run: |
+          if [[ "${{ github.event.inputs.dry-run }}" == "true" ]]; then
+            echo "DRY_RUN=true" >> $GITHUB_ENV
+          else
+            echo "DRY_RUN=false" >> $GITHUB_ENV
+          fi
+
       - name: Release
-        run: yarn release
+        run: yarn release --dry-run ${{ env.DRY_RUN }}
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
