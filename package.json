@@ -1,6 +1,6 @@
 {
   "name": "action-mirror-action",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Easily mirror actions from GitHub.com or other Git repositories to your own GitHub enterprise instance.",
   "main": "lib/main.js",
   "author": "Alexej Disterhoft <github@disterhoft.de>",
